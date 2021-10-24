@@ -19,3 +19,4 @@ This challenge was created using Next.js and Node.js
 
 
 # Further Reading
+Read about the features that were added, bugs, and areas of improvements in [FEATURES.md](https://github.com/JaeWanBae/rose-rocket-tech-challenge/blob/main/FEATURES.md)
