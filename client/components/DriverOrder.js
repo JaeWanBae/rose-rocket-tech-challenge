@@ -1,4 +1,4 @@
-import { EditOutlined, DeleteOutlined, DragOutlined } from "@ant-design/icons";
+import { DeleteOutlined, DragOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 
@@ -32,9 +32,13 @@ const OrderContainer = styled.div`
 		font-size: 15px;
 		padding: 3px;
 	}
+
+	& .anticon-delete {
+		color: red;
+	}
 `;
 
-const DriverOrder = ({ order, i }) => {
+const DriverOrder = ({ order, i, handleOrderDelete, driver }) => {
 	return (
 		<Draggable draggableId={order._id} index={i}>
 			{(provided) => (
@@ -43,8 +47,9 @@ const DriverOrder = ({ order, i }) => {
 					<p className='description'>{order.description}</p>
 					<p>${order.revenue}</p>
 					<p>${order.cost}</p>
-					<EditOutlined />
-					<DeleteOutlined />
+					<DeleteOutlined
+						onClick={() => handleOrderDelete(order, driver._id)}
+					/>
 				</OrderContainer>
 			)}
 		</Draggable>

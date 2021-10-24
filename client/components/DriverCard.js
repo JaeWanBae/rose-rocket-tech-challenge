@@ -13,6 +13,12 @@ const Container = styled.div`
 	transition: backgrond-color 0.2 ease;
 
 	flex-direction: column;
+
+	& .noOrder {
+		text-align: center;
+		color: grey;
+		margin-top: 200px;
+	}
 `;
 
 const NameHeader = styled.div`
@@ -40,7 +46,13 @@ const Name = styled.h2`
 	font-size: 16px;
 `;
 
-const DriverCard = ({ driver, handleDriverDelete, provided, snapshot }) => {
+const DriverCard = ({
+	driver,
+	handleDriverDelete,
+	provided,
+	snapshot,
+	handleOrderDelete,
+}) => {
 	const [driverOrder, setdriverOrder] = useState([]);
 	useEffect(() => {
 		fetchDriverOrder();
@@ -65,11 +77,17 @@ const DriverCard = ({ driver, handleDriverDelete, provided, snapshot }) => {
 				<CloseOutlined onClick={() => handleDriverDelete(driver)} />
 			</NameHeader>
 			{driver.orders.length === 0 ? (
-				<p>No Orders Assigned</p>
+				<p className='noOrder'>No Orders Assigned</p>
 			) : (
 				driverOrder.map((order, i) => {
 					return (
-						<DriverOrder order={order} key={order._id} driver={driver} i={i} />
+						<DriverOrder
+							order={order}
+							key={order._id}
+							driver={driver}
+							i={i}
+							handleOrderDelete={handleOrderDelete}
+						/>
 					);
 				})
 			)}

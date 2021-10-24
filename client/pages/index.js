@@ -77,37 +77,57 @@ const Home = () => {
 	};
 
 	const handleDriverDelete = async (driver) => {
-		try {
-			const answer = window.confirm(
-				`Are you sure you want to remove ${driver.firstName} ${driver.lastName} as a driver?`
-			);
-			if (!answer) return;
-			const { data } = await axios.delete(
-				`${process.env.NEXT_PUBLIC_API}/delete-driver/${driver._id}`
-			);
-			if (data.error) {
-				toast.error(data.error);
-			}
+		if (driver.orders.length > 0) {
+			toast.error("You cannot delete a driver while they have an order");
+		} else {
+			try {
+				const answer = window.confirm(
+					`Are you sure you want to remove ${driver.firstName} ${driver.lastName} as a driver?`
+				);
 
-			toast.success("Driver removed");
-			fetchDrivers();
-		} catch (err) {
-			console.log(err);
+				if (!answer) return;
+
+				await axios.delete(
+					`${process.env.NEXT_PUBLIC_API}/delete-driver/${driver._id}`
+				);
+
+				toast.success("Driver removed");
+				fetchDrivers();
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	};
 
-	const handleOrderDelete = async (order) => {
+	const handleOrderDelete = async (order, driverId) => {
 		try {
 			const answer = window.confirm(
 				`Are you sure you want to remove this order (ID: ${order.orderId})?`
 			);
+
 			if (!answer) return;
+
 			await axios.delete(
 				`${process.env.NEXT_PUBLIC_API}/delete-order/${order._id}`
 			);
 
+			if (driverId) {
+				const { data } = await axios.put(
+					`${process.env.NEXT_PUBLIC_API}/delete-driverorder`,
+					{
+						orderId: order._id,
+						driverId,
+					}
+				);
+
+				setColumns((currentColumn) => {
+					return { ...currentColumn, [data._id]: data.orders };
+				});
+			}
+
 			toast.error("Order removed");
 			fetchOrders();
+			fetchDrivers();
 		} catch (err) {
 			console.log(err);
 		}
@@ -115,7 +135,6 @@ const Home = () => {
 
 	const onDragEnd = async (result) => {
 		const { destination, source, draggableId } = result;
-		console.log(result);
 
 		if (!destination) {
 			return;
@@ -214,6 +233,7 @@ const Home = () => {
 								<Droppable droppableId={driver._id} key={driver._id}>
 									{(provided, snapshot) => (
 										<DriverCard
+											handleOrderDelete={handleOrderDelete}
 											snapshot={snapshot}
 											driver={driver}
 											handleDriverDelete={handleDriverDelete}

@@ -36,16 +36,10 @@ export const getDrivers = async (req, res) => {
 
 export const deleteDriver = async (req, res) => {
 	try {
-		const driver = await Driver.findByIdAndDelete(req.params._id);
-		if (driver.order.length === 0) {
-			res.json({
-				ok: true,
-			});
-		} else {
-			return res.json({
-				error: "Please delete or move the driver's orders before deleting",
-			});
-		}
+		await Driver.findByIdAndDelete(req.params._id);
+		return res.json({
+			ok: true,
+		});
 	} catch (err) {
 		console.log(err);
 	}
@@ -136,7 +130,7 @@ export const updateDriverOrders = async (req, res) => {
 			const data = await Driver.findByIdAndUpdate(
 				driverId,
 				{
-					$push: { orders: req.body.objectId },
+					$push: { orders: objectId },
 				},
 				{
 					new: true,
@@ -149,7 +143,7 @@ export const updateDriverOrders = async (req, res) => {
 			const data = await Driver.findByIdAndUpdate(
 				driverId,
 				{
-					$pull: { orders: req.body.objectId },
+					$pull: { orders: objectId },
 				},
 				{
 					new: true,
@@ -157,6 +151,23 @@ export const updateDriverOrders = async (req, res) => {
 			);
 			return res.json(data);
 		}
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+export const deleteDriverOrder = async (req, res) => {
+	const { driverId, orderId } = req.body;
+	try {
+		const data = await Driver.findByIdAndUpdate(
+			driverId,
+			{
+				$pull: { orders: orderId },
+			},
+			{ new: true }
+		);
+
+		return res.json(data);
 	} catch (err) {
 		console.log(err);
 	}

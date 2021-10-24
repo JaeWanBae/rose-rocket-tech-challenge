@@ -13,6 +13,7 @@ import {
 	updateOrder,
 	getDriverOrders,
 	updateDriverOrders,
+	deleteDriverOrder,
 } from "../controllers/controller";
 
 router.post("/new-driver", newDriver);
@@ -26,4 +27,5 @@ router.put("/update-order/:_id", updateOrder);
 
 router.get("/driver-orders/:_id", getDriverOrders);
 router.put("/update-driverorders", updateDriverOrders);
+router.put("/delete-driverorder", deleteDriverOrder);
 module.exports = router;
