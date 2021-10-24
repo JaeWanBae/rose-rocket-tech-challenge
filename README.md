@@ -13,6 +13,7 @@ This challenge was created using Next.js and Node.js
 
 - To start the client
   - Navigate to the client folder and create a .env.local file following the example provided in the repo
+    INPUT YOUR OWN MONGO DB USERNAME AND PW IN THE ENV FILE 
   - install the dependencies using ```npm i```
   - run the app using ```npm run dev```
   - app will run on the host of your choosing from the .env file.
