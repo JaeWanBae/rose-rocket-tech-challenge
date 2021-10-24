@@ -27,6 +27,8 @@ The app can be improve in many areas. I wish I had more time to work on this but
 
 - **Driver with the same name:** Currently, you can create a driver with the same name as an existing driver. The app won't break as they are given a unique ID. however, you cannot tell which is what in the UI. 
 
+- **console.logs in the catch:** With my current level of understanding, I couldn't really find what to put in the catch to make the app more fool proof. I made as much error handling as I can and just could not figure out what to put in the catch block. Hopefully I'll learn soon! 
+
 # Ideas for other features
 These could be really fun to implement to this sort of app!
 - Click the order to expand the order list to contain the exact nature of the order. (who ordered it, where is it going, how many of what items) 
