@@ -15,3 +15,6 @@ This challenge was created using Next.js and Node.js
   - install the dependencies using ```npm i```
   - run the app using ```npm run dev```
   - app will run on the host of your choosing from the .env file.
+
+
+**Further Reading**
