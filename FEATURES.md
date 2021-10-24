@@ -29,6 +29,8 @@ The app can be improve in many areas. I wish I had more time to work on this but
 
 - **console.logs in the catch:** With my current level of understanding, I couldn't really find what to put in the catch to make the app more fool proof. I made as much error handling as I can and just could not figure out what to put in the catch block. Hopefully I'll learn soon! 
 
+-**Input Number with e:** Currently the input numbers take in the value of e because e is a mathematical expression for exponents
+
 # Ideas for other features
 These could be really fun to implement to this sort of app!
 - Click the order to expand the order list to contain the exact nature of the order. (who ordered it, where is it going, how many of what items) 
