@@ -32,3 +32,4 @@ These could be really fun to implement to this sort of app!
 - Click the order to expand the order list to contain the exact nature of the order. (who ordered it, where is it going, how many of what items) 
 - Search function to filter through the orders or drivers to locate a specific driver
 - Ability to drag and drop the whole Driver card to rearrange which driver is at the top. (further could be expanded to make sure that the driver with the most amount of orders are listed at the front or back)
+- When adding new order, can immediately assign a driver in the form 
