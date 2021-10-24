@@ -6,7 +6,7 @@ This challenge was created using Next.js and Node.js
 
 - To start the server
   - Navigate to the server folder and create a .env file following the example provided in the repo
-  - Install the dependencies using npm i
+  - Install the dependencies using ```npm i```
   - run npm start to start the server
 
 
