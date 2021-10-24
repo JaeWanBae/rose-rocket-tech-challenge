@@ -1,6 +1,7 @@
 # Rose Rocket Tech Challenge
 
 **How to run**
+
 This challenge was created using Next.js and Node.js
 - clone this repository https://github.com/JaeWanBae/rose-rocket-tech-challenge
 
